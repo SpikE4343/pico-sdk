@@ -99,6 +99,7 @@ enum gpio_function {
     GPIO_FUNC_NULL = 0xf,
 };
 
+
 #define GPIO_OUT 1
 #define GPIO_IN 0
 
