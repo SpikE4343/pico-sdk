@@ -27,7 +27,6 @@ enum gpio_function {
     GPIO_FUNC_NULL = 0xf,
 };
 
-
 #define GPIO_OUT 1
 #define GPIO_IN 0
 
@@ -49,6 +48,10 @@ void gpio_pull_down(uint gpio);
 void gpio_disable_pulls(uint gpio);
 
 void gpio_set_pulls(uint gpio, bool up, bool down);
+
+void gpio_set_slewfast(uint gpio, uint value);
+
+void gpio_set_drive_strength(uint gpio, uint value);
 
 void gpio_set_outover(uint gpio, uint value);
 

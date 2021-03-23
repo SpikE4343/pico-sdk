@@ -140,6 +140,14 @@ enum gpio_override {
     GPIO_OVERRIDE_HIGH = 3,        ///< drive high/enable output
 };
 
+
+enum gpio_drive_strength {
+    GPIO_DRIVE_2MA = 0x0u,
+    GPIO_DRIVE_4MA = 0x1u,
+    GPIO_DRIVE_8MA = 0x2u,
+    GPIO_DRIVE_12MA = 0x3u,
+};
+
 // ----------------------------------------------------------------------------
 // Pad Controls + IO Muxing
 // ----------------------------------------------------------------------------
@@ -213,6 +221,24 @@ static inline bool gpio_is_pulled_down(uint gpio) {
 static inline void gpio_disable_pulls(uint gpio) {
     gpio_set_pulls(gpio, false, false);
 }
+
+/*! \brief Set GPIO slew rate
+ *  \ingroup hardware_gpio
+ *
+ * \param gpio GPIO number
+ * \param fast true if the GPIO slew rate is fast
+ */
+void gpio_set_slewfast(uint gpio, bool fast);
+
+
+/*! \brief Set GPIO drive strength
+ *  \ingroup hardware_gpio
+ *
+ * \param gpio GPIO number
+ * \param drive See \ref gpio_drive_strength
+ */
+void gpio_set_drive_strength(uint gpio, uint value);
+
 
 /*! \brief Set GPIO output override
  *  \ingroup hardware_gpio

@@ -39,6 +39,14 @@ void gpio_set_oeover(uint gpio, uint value) {
 
 }
 
+void gpio_set_slewfast(uint gpio, bool fast){
+
+}
+
+void gpio_set_drive_strength(uint gpio, uint value){
+
+}
+
 void gpio_set_irq_enabled(uint gpio, uint32_t events, bool enable) {
 
 }

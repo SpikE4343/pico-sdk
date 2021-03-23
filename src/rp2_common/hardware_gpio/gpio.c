@@ -55,6 +55,27 @@ void gpio_set_pulls(uint gpio, bool up, bool down) {
     );
 }
 
+void gpio_set_slewfast(uint gpio, bool fast) {
+    invalid_params_if(GPIO, gpio >= NUM_BANK0_GPIOS);
+    hw_write_masked(
+            &padsbank0_hw->io[gpio],
+            (bool_to_bit(fast) << PADS_BANK0_GPIO0_SLEWFAST_LSB), 
+            PADS_BANK0_GPIO0_SLEWFAST_BITS
+    );
+}
+
+
+// Set GPIO drive strength
+void gpio_set_drive_strength(uint gpio, uint value) {
+    invalid_params_if(GPIO, gpio >= NUM_BANK0_GPIOS);
+    invalid_params_if(GPIO, value << PADS_BANK0_GPIO5_DRIVE_LSB & ~PADS_BANK0_GPIO5_DRIVE_BITS);
+    hw_write_masked(
+            &padsbank0_hw->io[gpio],
+            value << PADS_BANK0_GPIO0_DRIVE_LSB,
+            PADS_BANK0_GPIO5_DRIVE_BITS
+    );
+}
+
 // Direct overrides for pad controls
 void gpio_set_inover(uint gpio, uint value) {
     invalid_params_if(GPIO, gpio >= NUM_BANK0_GPIOS);
